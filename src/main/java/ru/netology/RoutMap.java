@@ -54,6 +54,8 @@ public class RoutMap implements Runnable {
                 for (Map.Entry<Integer, Integer> item : sizeToFreq.entrySet()) {
                     printer.print(String.format("-%s (%s раз) ", item.getKey().toString(), item.getValue().toString()));
                 }
+            }else {
+                printer.print("Список пустой");
             }
         } catch (RuntimeException ex) {
             printer.print(ex.getMessage());
