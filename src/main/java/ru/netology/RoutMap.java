@@ -8,11 +8,13 @@ public class RoutMap implements Runnable {
 
     public RoutMap(String route) {
         this.route = route;
+
     }
 
     @Override
     public void run() {
-        this.generateStatistics(route);
+        System.out.println(route);
+        generateStatistics(route);
     }
 
     private void generateStatistics(String route) {
@@ -29,6 +31,7 @@ public class RoutMap implements Runnable {
             } else {
                 sizeToFreq.put(n, 1);
             }
+            sizeToFreq.notify();
         }
     }
 
@@ -54,7 +57,7 @@ public class RoutMap implements Runnable {
                 for (Map.Entry<Integer, Integer> item : sizeToFreq.entrySet()) {
                     printer.print(String.format("-%s (%s раз) ", item.getKey().toString(), item.getValue().toString()));
                 }
-            }else {
+            } else {
                 printer.print("Список пустой");
             }
         } catch (RuntimeException ex) {
